@@ -32,7 +32,6 @@ body {
   padding: 20px;
   padding-top: 140px;
   line-height: 1.6;
-  scroll-padding-top: 160px
 }
 
 /* Floating Navigation */
@@ -54,6 +53,9 @@ body {
   letter-spacing: 2px;
   margin-bottom: 10px;
   color: var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-menu {
@@ -63,6 +65,11 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+  align-items: center;
+}
+
+.nav-menu li {
+  flex-shrink: 0;
 }
 
 .nav-menu a {
@@ -74,11 +81,155 @@ body {
   transition: all 0.2s;
   text-transform: uppercase;
   letter-spacing: 1px;
+  white-space: nowrap;
+  display: block;
 }
 
 .nav-menu a:hover {
   background: var(--accent);
   border-color: var(--accent);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: var(--accent);
+  border: none;
+  color: var(--paper);
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+/* Mobile Drawer */
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100vh;
+  background: var(--ink);
+  color: var(--paper);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.5);
+  padding-top: 90px;
+}
+
+.nav-drawer.open {
+  left: 0;
+}
+
+.drawer-header {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 2px solid var(--accent);
+  background: var(--ink);
+  z-index: 2001;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: left 0.3s ease;
+}
+
+.nav-drawer.open .drawer-header {
+  left: 0;
+}
+
+.drawer-header h3 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 1px;
+}
+
+.close-drawer {
+  background: transparent;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.close-drawer:active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.drawer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drawer-menu li {
+  border-bottom: 1px solid #333;
+}
+
+.drawer-menu a {
+  display: block;
+  padding: 15px 20px;
+  color: var(--paper);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.drawer-menu a:active {
+  background: var(--accent);
+}
+
+.drawer-creed {
+  padding: 20px;
+  border-top: 2px solid var(--accent);
+  margin-top: 20px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: #ccc;
+}
+
+.drawer-creed p {
+  margin: 5px 0;
+}
+
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1999;
+}
+
+.drawer-overlay.show {
+  display: block;
 }
 
 /* Typography */
@@ -146,6 +297,7 @@ h4 {
   margin: 30px 0; 
   background: #fff;
   box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  scroll-margin-top: 160px;
 }
 
 .red { 
@@ -169,7 +321,9 @@ h4 {
 .table th, .table td { 
   border: 2px solid var(--ink); 
   padding: 12px; 
-  text-align: left; 
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .table th {
@@ -345,15 +499,42 @@ li {
 @media (max-width: 768px) {
   body {
     padding: 10px;
-    padding-top: 180px;
+    padding-top: 100px;
+  }
+  
+  .nav-header {
+    padding: 10px;
+  }
+  
+  .nav-title {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    letter-spacing: 1px;
   }
   
   .nav-menu {
-    font-size: 0.75rem;
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .nav-drawer {
+    display: block;
   }
   
   .timeline-grid {
     grid-template-columns: 80px 1fr 100px;
+  }
+  
+  .table {
+    font-size: 0.85rem;
+  }
+  
+  .table th, .table td {
+    padding: 8px;
   }
   
   h1 {
@@ -362,6 +543,22 @@ li {
   
   h2 {
     font-size: 1.4rem;
+  }
+  
+  .block {
+    scroll-margin-top: 120px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .nav-menu {
+    gap: 10px;
+  }
+  
+  .nav-menu a {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -384,6 +581,7 @@ li {
 <!-- Floating Navigation -->
 <nav class="nav-header">
   <div class="nav-title">⚠ MEF FIELD MANUAL ⚠</div>
+  <button class="menu-toggle" onclick="toggleDrawer()">☰ MENU</button>
   <ul class="nav-menu">
     <li><a href="#mission">Mission Math</a></li>
     <li><a href="#macros">Macros</a></li>
@@ -396,11 +594,42 @@ li {
   </ul>
 </nav>
 
+<!-- Mobile Drawer -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="toggleDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="drawer-header">
+    <h3>⚠ MEF FIELD MANUAL ⚠</h3>
+    <button class="close-drawer" onclick="toggleDrawer()">✕ CLOSE</button>
+  </div>
+  <ul class="drawer-menu">
+    <li><a href="#mission" onclick="toggleDrawer()">Mission Math</a></li>
+    <li><a href="#macros" onclick="toggleDrawer()">Macros</a></li>
+    <li><a href="#operations" onclick="toggleDrawer()">Operations</a></li>
+    <li><a href="#psychology" onclick="toggleDrawer()">Psychology</a></li>
+    <li><a href="#pain-wall" onclick="toggleDrawer()">Pain Wall</a></li>
+    <li><a href="#timeline" onclick="toggleDrawer()">Timeline</a></li>
+    <li><a href="#calculator" onclick="toggleDrawer()">Calculator</a></li>
+    <li><a href="#creed" onclick="toggleDrawer()">Creed</a></li>
+  </ul>
+  <div class="drawer-creed">
+    <p>I pay what I owe.</p>
+    <p>I embrace hunger, cold, pain, and fatigue.</p>
+    <p>I tax my impulses and build strength from their ashes.</p>
+    <p>I destroy weakness before it destroys me.</p>
+    <p>I choose suffering now so my future self does not suffer later.</p>
+    <p>I become the operator I was designed to be.</p>
+  </div>
+</div>
+
 <!-- Main Header -->
 <h1>⚠ THE MEF FIELD MANUAL ⚠</h1>
-<h3 style="margin-top: 0; color: var(--muted);">Total Metabolic Reset · Pain Elimination · Seconds-Based Accountability</h3>
+<h3 style="margin-top: 0; color: var(--muted); line-height: 1.8;">
+  Total Metabolic Reset<br>
+  Pain Elimination<br>
+  Seconds-Based Accountability
+</h3>
 
-<!-- Operator Info 
+<!-- Operator Info -->
 <div class="header-info">
   <label>
     Operator Name
@@ -419,7 +648,6 @@ li {
     <input type="date" id="start-date">
   </label>
 </div>
-Operator Info -->
 
 <!-- PART I: MISSION MATH -->
 <div class="block" id="mission">
@@ -435,10 +663,9 @@ Operator Info -->
 <p>The Pain Tax is the core accountability mechanism of this system. It transforms abstract calories into concrete physical debt.</p>
 
 <ul>
-  <li><strong>Base Tax:</strong> 1 calorie = 1 second of exercise</li>
-  <li><strong>Protein Tax:</strong> Standard rate (1 sec/cal only)</li>
-  <li><strong>Fat Penalty:</strong> +5 seconds per 10g consumed</li>
-  <li><strong>Carbohydrate Penalty:</strong> +10 seconds per 10g consumed</li>
+  <li><strong>Protein Tax:</strong> 1 second per calorie</li>
+  <li><strong>Fat Tax:</strong> 2 seconds per calorie</li>
+  <li><strong>Carbohydrate Tax:</strong> 3 seconds per calorie</li>
   <li><strong>No Carryover:</strong> Debt cannot be deferred to tomorrow</li>
   <li><strong>No Exceptions:</strong> Every snack, every meal, every bite counts</li>
 </ul>
@@ -455,57 +682,40 @@ Operator Info -->
 <div class="block" id="macros">
 <h2>PART II: MACRONUTRIENT COST SYSTEM</h2>
 
-<table class="table">
-<thead>
-<tr>
-  <th>Macronutrient</th>
-  <th>Calorie Density</th>
-  <th>Base Pain Tax</th>
-  <th>Penalty Tax</th>
-  <th>Total Tax Formula</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><strong>Protein</strong></td>
-  <td>4 cal/g</td>
-  <td>1 sec per cal</td>
-  <td>NONE</td>
-  <td>calories × 1</td>
-</tr>
-<tr>
-  <td><strong>Fat</strong></td>
-  <td>9 cal/g</td>
-  <td>1 sec per cal</td>
-  <td>+5 sec per 10g</td>
-  <td>calories × 1 + (grams ÷ 10) × 5</td>
-</tr>
-<tr>
-  <td><strong>Carbohydrates</strong></td>
-  <td>4 cal/g</td>
-  <td>1 sec per cal</td>
-  <td>+10 sec per 10g</td>
-  <td>calories × 1 + (grams ÷ 10) × 10</td>
-</tr>
-</tbody>
-</table>
+<div class="timeline-grid">
+  <div class="grid-header">Macronutrient</div>
+  <div class="grid-header">Calorie Density</div>
+  <div class="grid-header">Pain Tax (per calorie)</div>
+
+  <div class="time-block">Protein</div>
+  <div class="activity-block">4 cal/g</div>
+  <div class="seconds-block">1 second</div>
+
+  <div class="time-block">Fat</div>
+  <div class="activity-block">9 cal/g</div>
+  <div class="seconds-block">2 seconds</div>
+
+  <div class="time-block">Carbs</div>
+  <div class="activity-block">4 cal/g</div>
+  <div class="seconds-block">3 seconds</div>
+</div>
 
 <h3>STRATEGIC IMPLICATIONS</h3>
 <ul>
-  <li><strong>Protein is Favored:</strong> Maximum satiety, muscle preservation, lowest tax burden</li>
-  <li><strong>Fat is Tolerated:</strong> Essential for hormones, moderate penalty encourages moderation</li>
-  <li><strong>Carbs are Punished:</strong> Highest penalty reflects insulin impact and ease of overconsumption</li>
+  <li><strong>Protein is Favored:</strong> Maximum satiety, muscle preservation, lowest tax burden (1 sec/cal)</li>
+  <li><strong>Fat is Moderate:</strong> Essential for hormones, medium penalty encourages moderation (2 sec/cal)</li>
+  <li><strong>Carbs are Punished:</strong> Highest penalty reflects insulin impact and ease of overconsumption (3 sec/cal)</li>
 </ul>
 
 <h3>EXAMPLE CALCULATIONS</h3>
 <div style="background: var(--paper); padding: 15px; margin: 15px 0;">
 <p><strong>200 calories from chicken breast (46g protein, 4g fat):</strong></p>
-<p>Tax = 200 sec + (4÷10 × 5) = 200 + 2 = <span class="red">202 seconds</span></p>
+<p>Tax = (184 cal protein × 1) + (36 cal fat × 2) = 184 + 72 = <span class="red">256 seconds</span></p>
 
 <p><strong>200 calories from pasta (44g carbs, 2g protein):</strong></p>
-<p>Tax = 200 sec + (44÷10 × 10) = 200 + 44 = <span class="red">244 seconds</span></p>
+<p>Tax = (176 cal carbs × 3) + (8 cal protein × 1) = 528 + 8 = <span class="red">536 seconds</span></p>
 
-<p><strong>Outcome:</strong> The pasta costs 21% more suffering for identical calories.</p>
+<p><strong>Outcome:</strong> The pasta costs 110% more suffering for identical calories.</p>
 </div>
 </div>
 
@@ -622,36 +832,25 @@ Operator Info -->
 </div>
 
 <h3>COGNITIVE REFRAMES</h3>
-<table class="table">
-<thead>
-<tr>
-  <th>Weak Frame</th>
-  <th>Operator Frame</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>"I'm hungry"</td>
-  <td>"My body is burning stored fuel. Mission successful."</td>
-</tr>
-<tr>
-  <td>"This is too hard"</td>
-  <td>"This is exactly hard enough to create change."</td>
-</tr>
-<tr>
-  <td>"I deserve a treat"</td>
-  <td>"I deserve the life this discipline will build."</td>
-</tr>
-<tr>
-  <td>"I'll start tomorrow"</td>
-  <td>"There is only now. Tomorrow is a fantasy."</td>
-</tr>
-<tr>
-  <td>"I failed"</td>
-  <td>"I collected data. I adapt. I continue."</td>
-</tr>
-</tbody>
-</table>
+<div class="timeline-grid" style="grid-template-columns: 1fr 1fr;">
+  <div class="grid-header">Weak Frame</div>
+  <div class="grid-header">Operator Frame</div>
+
+  <div class="activity-block">"I'm hungry"</div>
+  <div class="activity-block">"My body is burning stored fuel. Mission successful."</div>
+
+  <div class="activity-block">"This is too hard"</div>
+  <div class="activity-block">"This is exactly hard enough to create change."</div>
+
+  <div class="activity-block">"I deserve a treat"</div>
+  <div class="activity-block">"I deserve the life this discipline will build."</div>
+
+  <div class="activity-block">"I'll start tomorrow"</div>
+  <div class="activity-block">"There is only now. Tomorrow is a fantasy."</div>
+
+  <div class="activity-block">"I failed"</div>
+  <div class="activity-block">"I collected data. I adapt. I continue."</div>
+</div>
 </div>
 
 <!-- PART V: PAIN WALL -->
@@ -792,20 +991,20 @@ Operator Info -->
   
   <div class="calc-inputs">
     <label>
-      Total Calories
-      <input type="number" id="calories" value="0" min="0">
-    </label>
-    <label>
       Protein (grams)
-      <input type="number" id="protein" value="0" min="0">
+      <input type="number" id="protein" value="0" min="0" onchange="calculatePainTax()">
     </label>
     <label>
       Fat (grams)
-      <input type="number" id="fat" value="0" min="0">
+      <input type="number" id="fat" value="0" min="0" onchange="calculatePainTax()">
     </label>
     <label>
       Carbohydrates (grams)
-      <input type="number" id="carbs" value="0" min="0">
+      <input type="number" id="carbs" value="0" min="0" onchange="calculatePainTax()">
+    </label>
+    <label>
+      Total Calories
+      <input type="number" id="calories" value="0" readonly style="background: #e8e8e8; cursor: not-allowed;">
     </label>
   </div>
   
@@ -842,44 +1041,61 @@ Operator Info -->
 </div>
 
 <script>
+function toggleDrawer() {
+  const drawer = document.getElementById('nav-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('show');
+}
+
 function calculatePainTax() {
-  const cals = parseInt(document.getElementById("calories").value) || 0;
   const protein = parseInt(document.getElementById("protein").value) || 0;
   const fat = parseInt(document.getElementById("fat").value) || 0;
   const carbs = parseInt(document.getElementById("carbs").value) || 0;
 
+  // Calculate calories from each macro
+  const proteinCals = protein * 4;
+  const fatCals = fat * 9;
+  const carbCals = carbs * 4;
+  const totalCals = proteinCals + fatCals + carbCals;
+
+  // Update the calories display
+  document.getElementById("calories").value = totalCals;
+
   // Calculate Pain Tax
-  // Base: 1 sec per calorie
-  // Fat penalty: +5 sec per 10g
-  // Carb penalty: +10 sec per 10g
-  let total = cals + Math.ceil(fat/10)*5 + Math.ceil(carbs/10)*10;
+  // Protein: 1 sec per cal (protein * 4 * 1 = protein * 4)
+  // Fat: 2 sec per cal (fat * 9 * 2 = fat * 18)
+  // Carbs: 3 sec per cal (carbs * 4 * 3 = carbs * 12)
+  const total = (protein * 4) + (fat * 18) + (carbs * 12);
   
   // Display results
-  document.getElementById("results-section").style.display = "block";
-  document.getElementById("total-seconds").innerText = total;
-  document.getElementById("total-minutes").innerText = (total/60).toFixed(1);
+  if (total > 0) {
+    document.getElementById("results-section").style.display = "block";
+    document.getElementById("total-seconds").innerText = total;
+    document.getElementById("total-minutes").innerText = (total/60).toFixed(1);
 
-  // Calculate exercise breakdown
-  const pushups = Math.floor(total * 0.20);
-  const squats = Math.floor(total * 0.20);
-  const lunges = Math.floor(total * 0.15);
-  const crunches = Math.floor(total * 0.15);
-  const burpees = Math.floor(total * 0.10);
-  const splitSquats = Math.floor(total * 0.10);
-  const plank = Math.floor(total * 0.10);
+    // Calculate exercise breakdown
+    const pushups = Math.floor(total * 0.20);
+    const squats = Math.floor(total * 0.20);
+    const lunges = Math.floor(total * 0.15);
+    const crunches = Math.floor(total * 0.15);
+    const burpees = Math.floor(total * 0.10);
+    const splitSquats = Math.floor(total * 0.10);
+    const plank = Math.floor(total * 0.10);
 
-  document.getElementById("exercise-list").innerHTML = `
-    <li><strong>Pushups:</strong> ${pushups} seconds</li>
-    <li><strong>Squats:</strong> ${squats} seconds</li>
-    <li><strong>Lunges:</strong> ${lunges} seconds (alternating)</li>
-    <li><strong>Crunches:</strong> ${crunches} seconds</li>
-    <li><strong>Burpees:</strong> ${burpees} seconds</li>
-    <li><strong>Bulgarian Split Squats:</strong> ${splitSquats} seconds (split between legs)</li>
-    <li><strong>Plank Hold:</strong> ${plank} seconds</li>
-  `;
-  
-  // Scroll to results
-  document.getElementById("results-section").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.getElementById("exercise-list").innerHTML = `
+      <li><strong>Pushups:</strong> ${pushups} seconds</li>
+      <li><strong>Squats:</strong> ${squats} seconds</li>
+      <li><strong>Lunges:</strong> ${lunges} seconds (alternating)</li>
+      <li><strong>Crunches:</strong> ${crunches} seconds</li>
+      <li><strong>Burpees:</strong> ${burpees} seconds</li>
+      <li><strong>Bulgarian Split Squats:</strong> ${splitSquats} seconds (split between legs)</li>
+      <li><strong>Plank Hold:</strong> ${plank} seconds</li>
+    `;
+    
+    // Scroll to results
+    document.getElementById("results-section").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
 </script>
 
