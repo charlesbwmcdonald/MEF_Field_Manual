@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MEF Field Manual</title>
+<style>
+:root {
+  --accent: #d9534f;
+  --dark: #222222;
+  --muted: #666666;
+  --paper: #fbfbfb;
+  --card: #fafafa;
+  --border: #e9e9e9;
+  --maxw: 850px;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  background: var(--paper);
+  color: var(--dark);
+  margin: 0;
+  padding: 28px;
+  -webkit-print-color-adjust: exact;
+}
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(20,20,20,0.06);
+  padding: 26px;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 4px solid #f2f2f2;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--dark);
+}
+.meta {
+  text-align: right;
+  font-size: 12px;
+  color: var(--muted);
+}
+.badge {
+  display:inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* Editable fields */
+.meta input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 12px;
+  padding: 2px 4px;
+  text-align: right;
+  width: 140px;
+  background: transparent;
+}
+.meta input.short {
+  width: 50px;
+}
+.meta input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+/* Remove borders when printing */
+@media print {
+  .meta input {
+    border: none !important;
+    width: auto;
+  }
+}
+
+/* Sections */
+.section { margin-top: 18px; }
+.h2 { font-size: 15px; margin-bottom: 8px; color: var(--accent); font-weight: 800; }
+.p { margin: 0 0 8px 0; line-height: 1.45; color: var(--dark); font-size: 13px; }
+.small { font-size: 12px; color: var(--muted); }
+
+/* Cards */
+.card { background: var(--card); border: 1px solid var(--border); padding: 12px; border-radius: 6px; }
+
+/* Table styling */
+.table { width:100%; border-collapse: collapse; margin-top: 8px; }
+.table th, .table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+  vertical-align: top;
+}
+.table thead th {
+  background: #f7f7f7;
+  text-align: left;
+  border-bottom: 1px solid #e6e6e6;
+  font-weight: 700;
+}
+
+/* Schedule grid */
+.schedule {
+  display: grid;
+  grid-template-columns:120px 1fr;
+  gap: 8px;
+  align-items:start;
+}
+
+/* Small helper */
+.cost { font-weight:700; color: var(--dark); }
+
+/* Lists */
+ul.small { margin: 6px 0 0 18px; padding: 0; }
+
+/* Footer */
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align:center;
+}
+
+/* Print tweaks */
+@media print {
+  body { padding: 0; }
+  .container { box-shadow: none; border-radius: 0; margin: 0; }
+  .header { page-break-inside: avoid; }
+  .card, .table { page-break-inside: avoid; }
+}
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="title">THE MEF FIELD MANUAL</div>
+        <div class="small">MISSION: TOTAL METABOLIC RESET // PAIN ELIMINATION</div>
+      </div>
+
+      <!-- Editable fields -->
+      <div class="meta">
+        <div>
+          OPERATOR:
+          <input type="text" id="operatorName" placeholder="Enter Name"/>
+        </div>
+        <div>
+          WEIGHT:
+          <input type="text" id="currentWeight" class="short" value="260"/> LBS →
+          <input type="text" id="targetWeight" class="short" value="200"/> LBS
+        </div>
+        <div class="badge">ACTIVE</div>
+      </div>
+    </div>
+
+    <div class="section card">
+      <div class="h2">PART I: THE MISSION MATH (1,500 CALORIE DEFICIT)</div>
+      <p class="p">At 260 lbs, your body burns ~2,400 calories just existing. We are adding <strong>1,500 active burn calories</strong> on top. This is how we cook the fat off.</p>
+
+      <div class="h2">THE 1,500 CALORIE BREAKDOWN</div>
+      <p class="p">You cannot get this all at once. You must attack it in three waves.</p>
+
+      <div style="margin-top:8px;">
+        <div class="h2">WAVE 1: THE MORNING PATROL (Completed)</div>
+        <p class="p"><strong>Activity:</strong> 3-Mile Fasted Walk.<br/><strong>Yield:</strong> ~400 Calories.<br/><strong>Status:</strong> Mandatory. Non-negotiable.</p>
+
+        <div class="h2">WAVE 2: THE HOURLY TAX (The "Gap" Filler)</div>
+        <p class="p"><strong>Activity:</strong> Hourly Micro-Workouts (The "Pain Currency").<br/><strong>Frequency:</strong> Every hour on the hour (10x per day).<br/><strong>Yield:</strong> ~600 Calories.</p>
+        <p class="small">Note: At your weight, simply standing up and doing 20 squats + 20 pushups burns significant fuel.</p>
+
+        <div class="h2">WAVE 3: THE EVENING FINISHER</div>
+        <p class="p"><strong>Activity:</strong> Rucking (Pack Walk) OR Stationary Bike.<br/><strong>Duration:</strong> 45–60 Minutes.<br/><strong>Yield:</strong> ~500 Calories.</p>
+        <p class="small">Note: This closes the gap. If you skip this, you miss the target.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="h2">PART II: THE PAIN CURRENCY (NUTRITION)</div>
+      <p class="p"><strong>RULE:</strong> Food is not free. You must pay the physical cost before you eat.</p>
+
+      <div style="margin-top:10px;">
+        <div class="h2">THE FUEL (PROTEIN)</div>
+        <table class="table" aria-label="protein table">
+          <thead>
+            <tr><th>ITEM</th><th>COST (THE PRICE YOU PAY)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1 Egg</td><td class="cost">5 Pushups OR 5 Squats</td></tr>
+            <tr><td>Chicken / Turkey (4 oz)</td><td class="cost">10 Pushups</td></tr>
+            <tr><td>Fish / Beef (4 oz)</td><td class="cost">10 Pushups</td></tr>
+            <tr><td>Cottage Cheese (1/2 cup)</td><td class="cost">15 Squats</td></tr>
+            <tr><td>Whey Protein (1 scoop)</td><td class="cost">20 Kettlebell Swings</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div class="h2">THE MAINTENANCE (VEG & FAT)</div>
+        <table class="table">
+          <thead>
+            <tr><th>ITEM</th><th>COST (THE PRICE YOU PAY)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Green Veg (1 cup)</td><td class="cost">10 sec Plank</td></tr>
+            <tr><td>Olive Oil / Butter (1 tbsp)</td><td class="cost">20 Pushups</td></tr>
+            <tr><td>Avocado (1/2)</td><td class="cost">25 Squats</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div class="h2">THE POISON (CARBS & SUGAR)</div>
+        <table class="table">
+          <thead>
+            <tr><th>ITEM</th><th>COST (THE PRICE YOU PAY)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Rice / Oats / Potato (1/2 cup)</td><td class="cost">40 Pushups + 40 Squats</td></tr>
+            <tr><td>Bread (1 Slice)</td><td class="cost">25 Burpees</td></tr>
+            <tr><td>Fruit (1 Piece)</td><td class="cost">50 Lunges</td></tr>
+            <tr><td>Sugar / Dessert (1 Serving)</td><td class="cost">100 Burpees + 100 Squats</td></tr>
+            <tr><td>Alcohol (1 Drink)</td><td class="cost">100 Burpees + 1 Mile Run</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section card">
+      <div class="h2">PART III: THE PAIN WALL (PSYCHOLOGY)</div>
+      <p class="p">Motivation fades. Discipline needs a visual anchor.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <strong>SETUP:</strong>
+          <ul class="small">
+            <li>The Board: Corkboard or section of wall in your garage/office.</li>
+            <li>The Content: Photos of you at your heaviest, medical bills, old injuries.</li>
+            <li>The Why: Photos of your wife and child.</li>
+            <li>The Goal: A picture of the physique/life you want.</li>
+            <li>The Chart: This document, pinned in the center.</li>
+          </ul>
+        </div>
+        <div>
+          <strong>THE RITUAL:</strong>
+          <p class="small">Morning: Stand in front of the wall for 60 seconds. Look at the "Pain" photos. Remind yourself what happens if you stay the same.</p>
+          <p class="small">The Urge: When you want to quit or binge eat, touch the wall. Physical contact breaks the mental loop.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="h2">PART IV: DAILY OPERATIONS ORDER (SCHEDULE)</div>
+      <div class="card" style="padding:10px;">
+        <div style="display:grid; grid-template-columns:120px 1fr; gap:8px; align-items:start;">
+          <div class="small"><strong>0500</strong></div>
+          <div><strong>WAKE UP // HYDRATE</strong><br/>20oz Water + Electrolytes (Sodium/Potassium). Black Coffee.</div>
+
+          <div class="small"><strong>0530</strong></div>
+          <div><strong>WAVE 1 (THE WALK)</strong><br/>3 Miles. Zone 2. Audio: No music. Audiobooks or educational podcasts only.</div>
+
+          <div class="small"><strong>0800–1700</strong></div>
+          <div><strong>THE GRIND (WORK + WAVE 2)</strong><br/>Nutrition: Break fast around 1000 or 1100 (Eggs/Protein). PAY THE CURRENCY FIRST.<br/>The Hourly Tax: Set a phone alarm for every hour. Alarm goes off: Drop and do 20 reps (Pushups, Squats, or Lunges).</div>
+
+          <div class="small"><strong>1800</strong></div>
+          <div><strong>WAVE 3 (THE FINISHER)</strong><br/>Option A (Hard): Put on a backpack (20lbs). Walk for 45 mins.<br/>Option B (Joint Save): Stationary Bike for 45 mins (Moderate resistance).</div>
+
+          <div class="small"><strong>1900</strong></div>
+          <div><strong>REFUEL & RECOVER</strong><br/>Dinner: Protein + Greens. PAY THE CURRENCY. Magnesium Glycinate (400mg). 10 Minutes Stretching (Focus: Hamstrings/Hips/Back).</div>
+
+          <div class="small"><strong>2200</strong></div>
+          <div><strong>LIGHTS OUT</strong><br/>Sleep is when the fat oxidizes. If you don't sleep, you don't lose weight.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section card">
+      <div class="h2">PART V: RULES OF ENGAGEMENT</div>
+      <ul class="small">
+        <li><strong>NO NEGOTIATION:</strong> The chart is the law. If you eat it, you pay for it.</li>
+        <li><strong>EMBRACE THE SUCK:</strong> You are overweight and in pain. The workouts will hurt. Being fat hurts. Choose your pain.</li>
+        <li><strong>MODIFY, DON'T QUIT:</strong> If your knees scream, do pushups. If your shoulders scream, do squats. Movement is mandatory.</li>
+        <li><strong>RESET:</strong> If you fail a day, you do not spiral. You wake up at 0500 and restart.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      END OF MANUAL — Print-friendly layout. Enter your operator & weight fields above before printing.
+    </div>
+
+  </div>
+</body>
+</html>
