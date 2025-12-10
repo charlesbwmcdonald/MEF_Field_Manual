@@ -665,9 +665,9 @@ Operator Info -->
 <p>The Pain Tax is the core accountability mechanism of this system. It transforms abstract calories into concrete physical debt.</p>
  -->
 <ul>
-  <li><strong>Protein Tax:</strong> 1 second per calorie</li>
-  <li><strong>Fat Tax:</strong> 2 seconds per calorie</li>
-  <li><strong>Carbohydrate Tax:</strong> 3 seconds per calorie</li>
+  <li><strong>Protein Tax:</strong> .5 second per calorie</li>
+  <li><strong>Fat Tax:</strong> 1 seconds per calorie</li>
+  <li><strong>Carbohydrate Tax:</strong> 2 seconds per calorie</li>
   <li><strong>No Carryover:</strong> Debt cannot be deferred to tomorrow</li>
   <li><strong>No Exceptions:</strong> Every snack, every meal, every bite counts</li>
 </ul>
@@ -1066,9 +1066,9 @@ function calculatePainTax() {
 
   // Calculate Pain Tax
   // Protein: 1 sec per cal (protein * 4 * 1 = protein * 4)
-  // Fat: 2 sec per cal (fat * 9 * 2 = fat * 18)
-  // Carbs: 3 sec per cal (carbs * 4 * 3 = carbs * 12)
-  const total = (protein * 4) + (fat * 18) + (carbs * 12);
+  // Fat: 1 sec per cal (fat * 9 * 1 = fat * 9)
+  // Carbs: 2 sec per cal (carbs * 4 * 2 = carbs * 8)
+  const total = (protein * 4) + (fat * 9) + (carbs * 8);
   
   // Display results
   if (total > 0) {
@@ -1079,20 +1079,18 @@ function calculatePainTax() {
     // Calculate exercise breakdown
     const pushups = Math.floor(total * 0.20);
     const squats = Math.floor(total * 0.20);
-    const lunges = Math.floor(total * 0.15);
-    const crunches = Math.floor(total * 0.15);
-    const burpees = Math.floor(total * 0.10);
-    const splitSquats = Math.floor(total * 0.10);
+    const crunches = Math.floor(total * 0.25);
     const plank = Math.floor(total * 0.10);
+    const lunges = Math.floor(total * 0.25);
+
 
     document.getElementById("exercise-list").innerHTML = `
       <li><strong>Pushups:</strong> ${pushups} seconds</li>
       <li><strong>Squats:</strong> ${squats} seconds</li>
-      <li><strong>Lunges:</strong> ${lunges} seconds (alternating)</li>
       <li><strong>Crunches:</strong> ${crunches} seconds</li>
-      <li><strong>Burpees:</strong> ${burpees} seconds</li>
-      <li><strong>Bulgarian Split Squats:</strong> ${splitSquats} seconds (split between legs)</li>
       <li><strong>Plank Hold:</strong> ${plank} seconds</li>
+      <li><strong>Lunges:</strong> ${lunges} seconds (alternating)</li>
+
     `;
     
     // Scroll to results
