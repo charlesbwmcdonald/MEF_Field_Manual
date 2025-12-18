@@ -656,18 +656,10 @@ Operator Info -->
 
 <p><span class="red">Primary Objective:</span> Systematic destruction of excess body fat through metabolic reset and disciplined suffering.</p>
 
-<!-- CALORIE CEILING
-<h3>DAILY CALORIE CEILING</h3>
-<p><span class="emphasis">1500 kcal/day — ABSOLUTE MAXIMUM</span></p>
-<p>Every single calorie consumed carries an immediate Pain Tax measured in seconds of physical exertion. There is no credit. There is no tomorrow. <span class="red">Eat → Pay → Immediately.</span></p>
-
-<h3>PAIN TAX PRINCIPLE</h3>
-<p>The Pain Tax is the core accountability mechanism of this system. It transforms abstract calories into concrete physical debt.</p>
- -->
 <ul>
-  <li><strong>Protein Tax:</strong> 1 second per calorie</li>
-  <li><strong>Fat Tax:</strong> 1 seconds per calorie</li>
-  <li><strong>Carbohydrate Tax:</strong> 2 seconds per calorie</li>
+  <li><strong>Protein Tax:</strong> 0.5 seconds per calorie</li>
+  <li><strong>Fat Tax:</strong> 0.5 seconds per calorie</li>
+  <li><strong>Carbohydrate Tax:</strong> 1 second per calorie</li>
   <li><strong>No Carryover:</strong> Debt cannot be deferred to tomorrow</li>
   <li><strong>No Exceptions:</strong> Every snack, every meal, every bite counts</li>
 </ul>
@@ -691,33 +683,33 @@ Operator Info -->
 
   <div class="time-block">Protein</div>
   <div class="activity-block">4 cal/g</div>
-  <div class="seconds-block">1 second</div>
+  <div class="seconds-block">0.5 seconds</div>
 
   <div class="time-block">Fat</div>
   <div class="activity-block">9 cal/g</div>
-  <div class="seconds-block">2 seconds</div>
+  <div class="seconds-block">0.5 seconds</div>
 
   <div class="time-block">Carbs</div>
   <div class="activity-block">4 cal/g</div>
-  <div class="seconds-block">3 seconds</div>
+  <div class="seconds-block">1 second</div>
 </div>
 
 <h3>STRATEGIC IMPLICATIONS</h3>
 <ul>
-  <li><strong>Protein is Favored:</strong> Maximum satiety, muscle preservation, lowest tax burden (1 sec/cal)</li>
-  <li><strong>Fat is Moderate:</strong> Essential for hormones, medium penalty encourages moderation (1 sec/cal)</li>
-  <li><strong>Carbs are Punished:</strong> Highest penalty reflects insulin impact and ease of overconsumption (2 sec/cal)</li>
+  <li><strong>Protein is Favored:</strong> Maximum satiety, muscle preservation, lowest tax burden (0.5 sec/cal = 2 sec/gram)</li>
+  <li><strong>Fat is Efficient:</strong> Essential for hormones, same rate per calorie but higher density means 4.5 sec/gram</li>
+  <li><strong>Carbs are Punished:</strong> Double penalty reflects insulin impact and ease of overconsumption (1 sec/cal = 4 sec/gram)</li>
 </ul>
 
 <h3>EXAMPLE CALCULATIONS</h3>
 <div style="background: var(--paper); padding: 15px; margin: 15px 0;">
 <p><strong>200 calories from chicken breast (46g protein, 4g fat):</strong></p>
-<p>Tax = (184 cal protein × 1) + (36 cal fat × 1) = 184 + 36 = <span class="red">220 seconds</span></p>
+<p>Tax = (184 cal protein × 0.5) + (36 cal fat × 0.5) = 92 + 18 = <span class="red">110 seconds</span></p>
 
 <p><strong>200 calories from pasta (44g carbs, 2g protein):</strong></p>
-<p>Tax = (176 cal carbs × 2) + (8 cal protein × 1) = 352 + 8 = <span class="red">360 seconds</span></p>
+<p>Tax = (176 cal carbs × 1) + (8 cal protein × 0.5) = 176 + 4 = <span class="red">180 seconds</span></p>
 
-<p><strong>Outcome:</strong> The pasta incurs a bigger tax for identical calories.</p>
+<p><strong>Outcome:</strong> The pasta incurs 64% more tax for identical calories.</p>
 </div>
 </div>
 
@@ -1063,10 +1055,10 @@ function calculatePainTax() {
   document.getElementById("calories").value = totalCals;
 
   // Calculate Pain Tax
-  // Protein: 1 sec per cal (protein * 4 * 1 = protein * 4)
-  // Fat: 1 sec per cal (fat * 9 * 1 = fat * 9)
-  // Carbs: 2 sec per cal (carbs * 4 * 2 = carbs * 8)
-  const total = (protein * 4) + (fat * 9) + (carbs * 8);
+  // Protein: 0.5 sec per cal (protein * 4 * 0.5 = protein * 2)
+  // Fat: 0.5 sec per cal (fat * 9 * 0.5 = fat * 4.5)
+  // Carbs: 1 sec per cal (carbs * 4 * 1 = carbs * 4)
+  const total = Math.round((protein * 2) + (fat * 4.5) + (carbs * 4));
   
   // Display results
   if (total > 0) {
